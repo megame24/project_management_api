@@ -5,12 +5,12 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from config import app_config
-from app.users.routes import auth_bp
 import dotenv
 
 db = SQLAlchemy()
 dotenv.load_dotenv()
 
+from app.users.routes import auth_bp
 from app.models import seed_db
 
 
