@@ -24,7 +24,7 @@ def register():
         r'(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$', email)
 
     if not first_name or not valid_email or not valid_password:
-        return jsonify({'message': 'Required fields are mission or invalid'}), 400
+        return jsonify({'message': 'Required fields are missing or invalid'}), 400
 
     try:
         duplicate_user = User.query.filter_by(email=email).first()
@@ -57,7 +57,7 @@ def login():
     email = request_data.get('email', '')
     password = request_data.get('password', '')
     if not email or not password:
-        return jsonify({'message': 'Required fields are mission or invalid'}), 400
+        return jsonify({'message': 'Required fields are missing or invalid'}), 400
     try:
         user = User.get_and_auth_user(email, password)
         if user:
