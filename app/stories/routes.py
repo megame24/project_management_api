@@ -3,6 +3,7 @@
 from flask import request, Blueprint, jsonify
 from app.models import Story
 from app.services.decorators import login_required
+from app.models import db
 
 story_bp = Blueprint('story', __name__)
 
@@ -34,16 +35,40 @@ def create():
 
     if request.method == 'GET':
         role = request.decoded['role']
-        if role == 'User':
-            filter_by = request.decoded['id']
 
         try:
             stories = []
             if role == 'User':
-                stories = Story.query.filter_by(created_by=filter_by).all()
+                stories = Story.query.filter_by(created_by=request.decoded['id']).all()
             if role == 'Admin':
                 stories = Story.query.all()
             return jsonify([story.get_attributes() for story in stories]), 200
         except Exception as e:
             print(e)
             return jsonify({'message': 'Internal server error'}), 500
+
+
+@story_bp.route('/<int:story_id>/review', methods=['PUT'])
+@login_required
+def review(story_id):
+    """Admin review story"""
+    role = request.decoded['role']
+    if role != 'Admin':
+        return jsonify({'message': 'Permission denied'}), 409
+
+    status = request.get_json().get('status', '')
+    status_options = ['Accepted', 'Rejected']
+    if status.capitalize() not in status_options:
+        return jsonify({'message': 'Invalid status'}), 400
+
+    try:
+        story = Story.query.filter_by(id=story_id).first()
+        story.status = status
+        db.session.commit()
+        return jsonify({'message': 'success'}), 200
+    except Exception as e:
+        print(e)
+        return jsonify({'message': 'Internal server error'}), 500
+
+
+

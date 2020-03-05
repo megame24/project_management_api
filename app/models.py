@@ -63,6 +63,7 @@ class Story(db.Model):
     complexity = db.Column(db.String(255), nullable=False)
     estimated_hrs = db.Column(db.Integer, nullable=False)
     cost = db.Column(db.Float, nullable=False)
+    status = db.Column(db.String(255), default='Pending')
 
     @staticmethod
     def create(**kwargs):
@@ -80,7 +81,8 @@ class Story(db.Model):
             'type': self.type,
             'complexity': self.complexity,
             'estimated_hrs': self.estimated_hrs,
-            'cost': self.cost
+            'cost': self.cost,
+            'status': self.status
         }
 
 
