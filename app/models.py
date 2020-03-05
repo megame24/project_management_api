@@ -26,6 +26,7 @@ class User(db.Model):
     role = db.Column(db.String(255), default='User')
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255))
+    stories = db.relationship('Story', backref='user', lazy=True)
 
     def set_password(self, password):
         """Set password on register"""
@@ -50,6 +51,25 @@ class User(db.Model):
         if user and user.check_password(password):
             return user
         return None
+
+
+class Story(db.Model):
+    """Story model"""
+    id = db.Column(db.Integer, primary_key=True)
+    created_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    summary = db.Column(db.String, nullable=False)
+    description = db.Column(db.Text)
+    type = db.Column(db.String(255), nullable=False)
+    complexity = db.Column(db.String(255), nullable=False)
+    estimated_hrs = db.Column(db.Integer, nullable=False)
+    cost = db.Column(db.Float, nullable=False)
+
+    @staticmethod
+    def create(**kwargs):
+        """Create story on db"""
+        story = Story(**kwargs)
+        DBHelper.add(story)
+        return story
 
 
 def seed_db():

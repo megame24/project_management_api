@@ -11,6 +11,7 @@ db = SQLAlchemy()
 dotenv.load_dotenv()
 
 from app.users.routes import auth_bp
+from app.stories.routes import story_bp
 from app.models import seed_db
 
 
@@ -35,6 +36,7 @@ def create_app(env):
     migrate = Migrate(app, db)
 
     app.register_blueprint(auth_bp, url_prefix='/api')
+    app.register_blueprint(story_bp, url_prefix='/api/stories')
 
     @app.before_first_request
     def initialize():
