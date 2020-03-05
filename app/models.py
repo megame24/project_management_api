@@ -71,6 +71,18 @@ class Story(db.Model):
         DBHelper.add(story)
         return story
 
+    def get_attributes(self):
+        return {
+            'id': self.id,
+            'created_by': self.created_by,
+            'summary': self.summary,
+            'description': self.description,
+            'type': self.type,
+            'complexity': self.complexity,
+            'estimated_hrs': self.estimated_hrs,
+            'cost': self.cost
+        }
+
 
 def seed_db():
     pass
