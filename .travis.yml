@@ -1,0 +1,22 @@
+sudo: false
+
+language: python
+
+python:
+  - 3.7
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+
+install:
+  - pip install -r requirements.txt
+  - pip install codecov
+
+script:
+  - pytest --cov=app test
+
+after_success:
+  - codecov

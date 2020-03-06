@@ -1,18 +1,12 @@
 """This module initializes the API"""
 import os
 from flask import Flask, jsonify
-from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_cors import CORS
 from config import app_config
-import dotenv
 
 db = SQLAlchemy()
-dotenv.load_dotenv()
-
-from app.users.routes import auth_bp
-from app.stories.routes import story_bp
-from app.models import seed_db
 
 
 def create_app(env):
@@ -23,18 +17,16 @@ def create_app(env):
     """
 
     app = Flask(__name__)
+    CORS(app)
 
-    if env == 'development':
-        import logging
-        logging.basicConfig()
-        logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
-
-    CORS(app, origins=['*'], supports_credentials=True)
     app.config.from_object(app_config[env])
 
     db.init_app(app)
     migrate = Migrate(app, db)
 
+    from app.users.routes import auth_bp
+    from app.stories.routes import story_bp
+    from app.models import seed_db
     app.register_blueprint(auth_bp, url_prefix='/api')
     app.register_blueprint(story_bp, url_prefix='/api/stories')
 

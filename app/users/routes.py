@@ -1,6 +1,7 @@
 """Authentication routes"""
 
 import re
+import json
 from flask import request, Blueprint, jsonify
 from app.models import User
 from app.services.jwt_service import encode
@@ -11,7 +12,7 @@ auth_bp = Blueprint('auth', __name__)
 @auth_bp.route('/register', methods=['POST'])
 def register():
     """Register user route"""
-    request_data = request.get_json()
+    request_data = json.loads(request.data)
     email = request_data.get('email', '')
     password = request_data.get('password', '')
     first_name = request_data.get('first_name', '')
@@ -53,7 +54,7 @@ def register():
 @auth_bp.route('/login', methods=['POST'])
 def login():
     """Login user route"""
-    request_data = request.get_json()
+    request_data = json.loads(request.data)
     email = request_data.get('email', '')
     password = request_data.get('password', '')
     if not email or not password:
@@ -72,7 +73,7 @@ def login():
                 },
                 'token': encoded_jwt.decode('utf-8'),
                 'exp': token_expiration_time
-            }), 201
+            }), 200
         else:
             return jsonify({'message': 'Invalid password'}), 401
     except Exception as e:
