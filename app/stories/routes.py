@@ -1,5 +1,6 @@
 """Authentication routes"""
 
+import json
 from flask import request, Blueprint, jsonify
 from app.models import Story
 from app.services.decorators import login_required
@@ -13,7 +14,7 @@ story_bp = Blueprint('story', __name__)
 def create():
     """Create and get stories"""
     if request.method == 'POST':
-        request_data = request.get_json()
+        request_data = json.loads(request.data)
         summary = request_data.get('summary', '')
         description = request_data.get('description', '')
         story_type = request_data.get('type', '')
@@ -56,8 +57,8 @@ def review(story_id):
     if role != 'Admin':
         return jsonify({'message': 'Permission denied'}), 409
 
-    status = request.get_json().get('status', '')
-    status_options = ['Accepted', 'Rejected']
+    status = json.loads(request.data).get('status', '')
+    status_options = ['Approved', 'Rejected']
     if status.capitalize() not in status_options:
         return jsonify({'message': 'Invalid status'}), 400
 

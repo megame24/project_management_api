@@ -1,3 +1,4 @@
+import os
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -87,4 +88,10 @@ class Story(db.Model):
 
 
 def seed_db():
-    pass
+    """Seed database with admin credentials"""
+    admin_email = os.getenv('ADMIN_EMAIL')
+    admin_password = os.getenv('ADMIN_PASSWORD')
+    admin_first_name = os.getenv('ADMIN_FIRST_NAME')
+    admin = User.query.filter_by(email=admin_email).first()
+    if not admin:
+        User.register(admin_password, email=admin_email, first_name=admin_first_name, role='Admin')

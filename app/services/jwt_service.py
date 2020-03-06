@@ -16,7 +16,7 @@ def encode(payload):
 def decode(token):
     """jwt decode abstraction"""
     try:
-        return jwt.decode(token, os.getenv('APP_SECRET'))
+        return jwt.decode(token, os.getenv('APP_SECRET'), algorithms='HS256')
     except Exception as e:
         print(e)
         return False
