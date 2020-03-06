@@ -108,7 +108,7 @@ class UsersTestCase(unittest.TestCase):
             'password': 'invalid'
         }))
         result = json.loads(res.data.decode())
-        self.assertEqual(result['message'], 'Invalid password')
+        self.assertEqual(result['message'], 'Invalid email or password')
         self.assertEqual(res.status_code, 401)
 
     def tearDown(self):

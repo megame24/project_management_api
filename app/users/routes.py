@@ -75,7 +75,7 @@ def login():
                 'exp': token_expiration_time
             }), 200
         else:
-            return jsonify({'message': 'Invalid password'}), 401
+            return jsonify({'message': 'Invalid email or password'}), 401
     except Exception as e:
         print(e)
         return jsonify({'message': 'Internal server error'}), 500
