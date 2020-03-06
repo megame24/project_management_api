@@ -104,7 +104,7 @@ class StoriesTestCase(unittest.TestCase):
         }))
         result = json.loads(res.data.decode())
         self.assertEqual(result['message'], 'Permission denied')
-        self.assertEqual(res.status_code, 409)
+        self.assertEqual(res.status_code, 403)
 
     def test_review_story_invalid_status(self):
         """Review story invalid status"""

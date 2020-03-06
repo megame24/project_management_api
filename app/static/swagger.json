@@ -1,0 +1,714 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Proj M",
+    "description": "TODO: Add Description",
+    "contact": {}
+  },
+  "host": "test-proj-m-api.herokuapp.com",
+  "basePath": "/api",
+  "securityDefinitions": {
+    "token": {
+      "type": "apiKey",
+      "description": "",
+      "name": "token",
+      "in": "header"
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "description": "",
+        "summary": "User registration",
+        "tags": [
+          "User"
+        ],
+        "operationId": "Userregistration",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserregistrationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Userregistrationsuccess"
+            },
+            "examples": {
+              "application/json": {
+                "exp": "Sun, 08 Mar 2020 08:52:57 GMT",
+                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwicm9sZSI6IlVzZXIiLCJleHAiOjE1ODM2NTc1Nzd9.h3waQXzvfrHlXeV1zUyRzso2ZSHjTp_gbspqIQxWWo4",
+                "user": {
+                  "email": "narudto@gmail.com",
+                  "first_name": "naruto",
+                  "id": 5,
+                  "last_name": "",
+                  "role": "User"
+                }
+              }
+            },
+            "headers": {
+              "Content-Length": {
+                "type": "string",
+                "default": "331"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Server": {
+                "type": "string",
+                "default": "Werkzeug/0.16.1 Python/3.7.2"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 06 Mar 2020 08:52:57 GMT"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/login": {
+      "post": {
+        "description": "",
+        "summary": "User login",
+        "tags": [
+          "User"
+        ],
+        "operationId": "Userlogin",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserloginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Userloginsuccess"
+            },
+            "examples": {
+              "application/json": {
+                "exp": "Sun, 08 Mar 2020 15:58:32 GMT",
+                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwicm9sZSI6IkFkbWluIiwiZXhwIjoxNTgzNjgzMTEyfQ.sJ4LNIRk2yGxS32Av1YTuAwWkS05HhsSIcqC2mYXJTs",
+                "user": {
+                  "email": "naruto@gmail.com",
+                  "first_name": "naruto",
+                  "id": 2,
+                  "last_name": "",
+                  "role": "Admin"
+                }
+              }
+            },
+            "headers": {
+              "Content-Length": {
+                "type": "string",
+                "default": "333"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Server": {
+                "type": "string",
+                "default": "Werkzeug/0.16.1 Python/3.7.2"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 06 Mar 2020 15:58:32 GMT"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/stories": {
+      "post": {
+        "description": "",
+        "summary": "Create stories",
+        "tags": [
+          "Story"
+        ],
+        "operationId": "Createstories",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreatestoriesRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Createstoriessuccess"
+            },
+            "examples": {
+              "application/json": {
+                "message": "success"
+              }
+            },
+            "headers": {
+              "Content-Length": {
+                "type": "string",
+                "default": "27"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Server": {
+                "type": "string",
+                "default": "Werkzeug/0.16.1 Python/3.7.2"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 06 Mar 2020 15:58:46 GMT"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "summary": "Get stories",
+        "tags": [
+          "Story"
+        ],
+        "operationId": "Getstories",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Getstoriessuccess"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "complexity": "low",
+                  "cost": 2,
+                  "created_by": 1,
+                  "description": "des",
+                  "estimated_hrs": 2,
+                  "id": 1,
+                  "status": "Approved",
+                  "summary": "summary",
+                  "type": "enhancement"
+                },
+                {
+                  "complexity": "high",
+                  "cost": 2535,
+                  "created_by": 1,
+                  "description": "fgfdg",
+                  "estimated_hrs": 234,
+                  "id": 7,
+                  "status": "Rejected",
+                  "summary": "345345",
+                  "type": "bugfix"
+                },
+                {
+                  "complexity": "high",
+                  "cost": 1000000000,
+                  "created_by": 3,
+                  "description": "But I've truly enjoyed every single second of it",
+                  "estimated_hrs": 1000000000,
+                  "id": 8,
+                  "status": "Pending",
+                  "summary": "I've really suffered",
+                  "type": "enhancement"
+                },
+                {
+                  "complexity": "low",
+                  "cost": 2,
+                  "created_by": 2,
+                  "description": "des",
+                  "estimated_hrs": 2,
+                  "id": 9,
+                  "status": "Pending",
+                  "summary": "summary",
+                  "type": "enhancement"
+                }
+              ]
+            },
+            "headers": {
+              "Content-Length": {
+                "type": "string",
+                "default": "967"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Server": {
+                "type": "string",
+                "default": "Werkzeug/0.16.1 Python/3.7.2"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 06 Mar 2020 16:24:34 GMT"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stories/{story_id}/review": {
+      "put": {
+        "description": "",
+        "summary": "Admin review story",
+        "tags": [
+          "Story"
+        ],
+        "operationId": "Adminreviewstory",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AdminreviewstoryRequest"
+            }
+          },
+          {
+            "name": "story_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Adminreviewstorysuccess"
+            },
+            "examples": {
+              "application/json": {
+                "message": "success"
+              }
+            },
+            "headers": {
+              "Content-Length": {
+                "type": "string",
+                "default": "27"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Server": {
+                "type": "string",
+                "default": "Werkzeug/0.16.1 Python/3.7.2"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 06 Mar 2020 16:27:47 GMT"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserregistrationRequest": {
+      "title": "UserregistrationRequest",
+      "example": {
+        "email": "narudto@gmail.com",
+        "password": "P@ssw0rd!",
+        "first_name": "naruto"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "password",
+        "first_name"
+      ]
+    },
+    "Userregistrationsuccess": {
+      "title": "Userregistrationsuccess",
+      "example": {
+        "exp": "Sun, 08 Mar 2020 08:52:57 GMT",
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwicm9sZSI6IlVzZXIiLCJleHAiOjE1ODM2NTc1Nzd9.h3waQXzvfrHlXeV1zUyRzso2ZSHjTp_gbspqIQxWWo4",
+        "user": {
+          "email": "narudto@gmail.com",
+          "first_name": "naruto",
+          "id": 5,
+          "last_name": "",
+          "role": "User"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "exp": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "required": [
+        "exp",
+        "token",
+        "user"
+      ]
+    },
+    "User": {
+      "title": "User",
+      "example": {
+        "email": "narudto@gmail.com",
+        "first_name": "naruto",
+        "id": 5,
+        "last_name": "",
+        "role": "User"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "first_name",
+        "id",
+        "last_name",
+        "role"
+      ]
+    },
+    "UserloginRequest": {
+      "title": "UserloginRequest",
+      "example": {
+        "email": "naruto@gmail.com",
+        "password": "P@ssw0rd!"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "Userloginsuccess": {
+      "title": "Userloginsuccess",
+      "example": {
+        "exp": "Sun, 08 Mar 2020 15:58:32 GMT",
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwicm9sZSI6IkFkbWluIiwiZXhwIjoxNTgzNjgzMTEyfQ.sJ4LNIRk2yGxS32Av1YTuAwWkS05HhsSIcqC2mYXJTs",
+        "user": {
+          "email": "naruto@gmail.com",
+          "first_name": "naruto",
+          "id": 2,
+          "last_name": "",
+          "role": "Admin"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "exp": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "required": [
+        "exp",
+        "token",
+        "user"
+      ]
+    },
+    "CreatestoriesRequest": {
+      "title": "CreatestoriesRequest",
+      "example": {
+        "summary": "summary",
+        "description": "des",
+        "type": "enhancement",
+        "complexity": "low",
+        "cost": 2,
+        "estimated_hrs": 2
+      },
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "complexity": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "estimated_hrs": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "summary",
+        "description",
+        "type",
+        "complexity",
+        "cost",
+        "estimated_hrs"
+      ]
+    },
+    "Createstoriessuccess": {
+      "title": "Createstoriessuccess",
+      "example": {
+        "message": "success"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "Getstoriessuccess": {
+      "title": "Getstoriessuccess",
+      "example": {
+        "complexity": "low",
+        "cost": 2,
+        "created_by": 1,
+        "description": "des",
+        "estimated_hrs": 2,
+        "id": 1,
+        "status": "Approved",
+        "summary": "summary",
+        "type": "enhancement"
+      },
+      "type": "object",
+      "properties": {
+        "complexity": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "created_by": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "description": {
+          "type": "string"
+        },
+        "estimated_hrs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "complexity",
+        "cost",
+        "created_by",
+        "description",
+        "estimated_hrs",
+        "id",
+        "status",
+        "summary",
+        "type"
+      ]
+    },
+    "AdminreviewstoryRequest": {
+      "title": "AdminreviewstoryRequest",
+      "example": {
+        "status": "Approved"
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ]
+    },
+    "Adminreviewstorysuccess": {
+      "title": "Adminreviewstorysuccess",
+      "example": {
+        "message": "success"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    }
+  },
+  "security": [
+    {
+      "token": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": ""
+    },
+    {
+      "name": "Story"
+    }
+  ]
+}

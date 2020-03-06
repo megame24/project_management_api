@@ -55,7 +55,7 @@ def review(story_id):
     """Admin review story"""
     role = request.decoded['role']
     if role != 'Admin':
-        return jsonify({'message': 'Permission denied'}), 409
+        return jsonify({'message': 'Permission denied'}), 403
 
     status = json.loads(request.data).get('status', '')
     status_options = ['Approved', 'Rejected']
